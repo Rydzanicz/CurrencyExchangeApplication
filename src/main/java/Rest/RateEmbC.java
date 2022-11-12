@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
 import javax.annotation.processing.Generated;
 
 @Generated("jsonschema2pojo")
-public class RateEmb {
+public class RateEmbC {
 
     @SerializedName("no")
     @Expose
@@ -44,6 +44,14 @@ public class RateEmb {
 
     public void setBid(Double bid) {
         this.bid = bid;
+    }
+
+    public Double getAsk() {
+        return ask;
+    }
+
+    public void setAsk(Double ask) {
+        this.ask = ask;
     }
 
     @Override

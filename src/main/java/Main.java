@@ -1,4 +1,6 @@
-import Rest.RestClient;
+import Rest.Currency;
+import Rest.CurrencyRate;
+import Rest.NBPClient;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -8,11 +10,16 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        RestClient restClient = new RestClient();
+        NBPClient clientNBP = new NBPClient();
+        LocalDate localDate = LocalDate.now().minusDays(2);
+        CurrencyRate currencyRate = new CurrencyRate(Currency.USD);
+        currencyRate = clientNBP.getCurrencyExchangeRateBuyAndSell(currencyRate, localDate);
+        System.out.println(currencyRate);
 
-        String localDate = LocalDate.now().minusDays(2).toString();
-        double cenaPLN = restClient.getUSDExchangeRate(localDate);
-        System.out.println(cenaPLN);
+        currencyRate = clientNBP.getCurrencyExchangeRateMedium(currencyRate, localDate);
+        System.out.println(currencyRate);
+        currencyRate = clientNBP.getCurrencyExchangeRateMedium(currencyRate);
+        System.out.println(currencyRate);
 
     }
 

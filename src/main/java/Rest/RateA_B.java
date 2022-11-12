@@ -8,7 +8,7 @@ import javax.annotation.processing.Generated;
 import java.util.List;
 
 @Generated("jsonschema2pojo")
-public class Rate {
+public class RateA_B {
 
     @SerializedName("table")
     @Expose
@@ -21,7 +21,7 @@ public class Rate {
     private String code;
     @SerializedName("rates")
     @Expose
-    private List<RateEmb> rates = null;
+    private List<RateEmbA_B> rates = null;
 
     public String getTable() {
         return table;
@@ -47,11 +47,11 @@ public class Rate {
         this.code = code;
     }
 
-    public List<RateEmb> getRates() {
+    public List<RateEmbA_B> getRates() {
         return rates;
     }
 
-    public void setRates(List<RateEmb> rates) {
+    public void setRates(List<RateEmbA_B> rates) {
         this.rates = rates;
     }
 
