@@ -1,4 +1,4 @@
-package Rest;
+package Rest.Table_A_B;
 
 
 import com.google.gson.annotations.Expose;

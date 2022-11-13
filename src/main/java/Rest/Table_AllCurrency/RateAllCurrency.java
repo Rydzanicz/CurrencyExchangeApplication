@@ -1,26 +1,35 @@
-package Rest;
+package Rest.Table_AllCurrency;
 
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import javax.annotation.processing.Generated;
+import java.util.List;
 
 @Generated("jsonschema2pojo")
-public class RateEmbC {
+public class  RateAllCurrency {
 
+    @SerializedName("table")
+    @Expose
+    private String table;
     @SerializedName("no")
     @Expose
     private String no;
     @SerializedName("effectiveDate")
     @Expose
     private String effectiveDate;
-    @SerializedName("bid")
+    @SerializedName("rates")
     @Expose
-    private Double bid;
-    @SerializedName("ask")
-    @Expose
-    private Double ask;
+    private List<RateEmbAllCurrency> rates = null;
+
+    public String getTable() {
+        return table;
+    }
+
+    public void setTable(String table) {
+        this.table = table;
+    }
 
     public String getNo() {
         return no;
@@ -38,29 +47,21 @@ public class RateEmbC {
         this.effectiveDate = effectiveDate;
     }
 
-    public Double getBid() {
-        return bid;
+    public List<RateEmbAllCurrency> getRates() {
+        return rates;
     }
 
-    public void setBid(Double bid) {
-        this.bid = bid;
-    }
-
-    public Double getAsk() {
-        return ask;
-    }
-
-    public void setAsk(Double ask) {
-        this.ask = ask;
+    public void setRates(List<RateEmbAllCurrency> rates) {
+        this.rates = rates;
     }
 
     @Override
     public String toString() {
-        return "RateEmb {" +
-                "no='" + no + '\'' +
+        return "Rate{" +
+                "table='" + table + '\'' +
+                ", no='" + no + '\'' +
                 ", effectiveDate='" + effectiveDate + '\'' +
-                ", bid=" + bid +
-                ", ask=" + ask +
+                ", rates=" + rates +
                 '}';
     }
 }

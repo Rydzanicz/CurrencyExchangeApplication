@@ -1,5 +1,6 @@
-import Rest.Currency;
-import Rest.CurrencyRate;
+import Currency.Currency;
+import Currency.CurrencyRate;
+import Currency.CurrencyRateList;
 import Rest.NBPClient;
 
 import java.io.IOException;
@@ -13,13 +14,10 @@ public class Main {
         NBPClient clientNBP = new NBPClient();
         LocalDate localDate = LocalDate.now().minusDays(2);
         CurrencyRate currencyRate = new CurrencyRate(Currency.USD);
-        currencyRate = clientNBP.getCurrencyExchangeRateBuyAndSell(currencyRate, localDate);
-        System.out.println(currencyRate);
-
-        currencyRate = clientNBP.getCurrencyExchangeRateMedium(currencyRate, localDate);
-        System.out.println(currencyRate);
-        currencyRate = clientNBP.getCurrencyExchangeRateMedium(currencyRate);
-        System.out.println(currencyRate);
+        CurrencyRateList currencyRateList = new CurrencyRateList(currencyRate.getCurrency());
+//        currencyRateList = clientNBP.getCurrencyExchangeRateMedium(currencyRateList,localDate.minusDays(5),localDate);
+        currencyRateList = clientNBP.getCurrencyExchangeAll(currencyRateList);
+        System.out.println(currencyRateList);
 
     }
 

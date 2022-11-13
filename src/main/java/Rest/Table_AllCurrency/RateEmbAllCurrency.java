@@ -1,35 +1,23 @@
-package Rest;
+package Rest.Table_AllCurrency;
 
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import javax.annotation.processing.Generated;
-import java.util.List;
 
 @Generated("jsonschema2pojo")
-public class RateC {
+public class RateEmbAllCurrency {
 
-    @SerializedName("table")
-    @Expose
-    private String table;
     @SerializedName("currency")
     @Expose
     private String currency;
     @SerializedName("code")
     @Expose
     private String code;
-    @SerializedName("rates")
+    @SerializedName("mid")
     @Expose
-    private List<RateEmbC> rates = null;
-
-    public String getTable() {
-        return table;
-    }
-
-    public void setTable(String table) {
-        this.table = table;
-    }
+    private Double mid;
 
     public String getCurrency() {
         return currency;
@@ -47,21 +35,21 @@ public class RateC {
         this.code = code;
     }
 
-    public List<RateEmbC> getRates() {
-        return rates;
+
+    public Double getMid() {
+        return mid;
     }
 
-    public void setRates(List<RateEmbC> rates) {
-        this.rates = rates;
+    public void setMid(Double mid) {
+        this.mid = mid;
     }
 
     @Override
     public String toString() {
-        return "Rate{" +
-                "table='" + table + '\'' +
-                ", currency='" + currency + '\'' +
+        return "RateEmb {" +
+                "currency='" + currency + '\'' +
                 ", code='" + code + '\'' +
-                ", rates=" + rates +
+                ", mid=" + mid +
                 '}';
     }
 }
