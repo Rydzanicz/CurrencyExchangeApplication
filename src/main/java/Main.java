@@ -16,9 +16,9 @@ public class Main {
         LocalDate localDate = LocalDate.now().minusDays(2);
         CurrencyRate currencyRate = new CurrencyRate(Currency.USD);
         CurrencyRateList currencyRateList = new CurrencyRateList(currencyRate.getCurrency());
-        //        currencyRateList = clientNBP.getCurrencyExchangeRateMedium(currencyRateList,localDate.minusDays(5),localDate);
-        currencyRateList = clientNBP.getCurrencyExchangeAll(currencyRateList);
-        System.out.println(currencyRateList);
+        currencyRate = clientNBP.getCurrencyExchangeRateBuyAndSell(currencyRate);
+//        currencyRateList = clientNBP.getCurrencyExchangeAll(currencyRateList);
+        System.out.println(currencyRate);
 
         }
 
