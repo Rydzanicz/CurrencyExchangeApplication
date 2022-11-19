@@ -2,7 +2,6 @@ package com.example.CurrencyExchangeApplication;
 
 import com.example.CurrencyExchangeApplication.NbpClient.Currency.Currency;
 import com.example.CurrencyExchangeApplication.NbpClient.Currency.CurrencyRate;
-import com.example.CurrencyExchangeApplication.NbpClient.Currency.CurrencyRateList;
 import com.example.CurrencyExchangeApplication.NbpClient.NBPClient;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
