@@ -12,16 +12,23 @@ public class CurrencyRate {
     private Optional<Double> sell;
     private Optional<Double> medium;
 
-    public CurrencyRate(Currency currency, Optional<LocalDate> exchangeRateDateForBuyAndSell, Optional<Double> buy, Optional<Double> sell, Optional<LocalDate> exchangeRateDateForMid, Optional<Double> medium) {
+    public CurrencyRate(Currency currency,
+                        Optional<LocalDate> exchangeRateDateForBuyAndSell,
+                        Optional<Double> buy,
+                        Optional<Double> sell,
+                        Optional<LocalDate> exchangeRateDateForMid,
+                        Optional<Double> medium)
+        {
         this.currency = currency;
         this.exchangeRateDateForBuyAndSell = exchangeRateDateForBuyAndSell;
         this.exchangeRateDateForMid = exchangeRateDateForMid;
         this.buy = buy;
         this.sell = sell;
         this.medium = medium;
-    }
+        }
 
-    public CurrencyRate(Currency currency) {
+    public CurrencyRate(Currency currency)
+        {
         this.currency = currency;
         this.exchangeRateDateForBuyAndSell = Optional.empty();
         this.exchangeRateDateForMid = Optional.empty();
@@ -29,76 +36,93 @@ public class CurrencyRate {
         this.sell = Optional.empty();
         this.medium = Optional.empty();
 
-    }
+        }
 
-    public Currency getCurrency() {
+    public Currency getCurrency()
+        {
         return currency;
-    }
+        }
 
-    public void setBuy(Optional<Double> buy) {
+    public void setBuy(Optional<Double> buy)
+        {
         this.buy = buy;
-    }
+        }
 
-    public Optional<Double> getBuy() {
+    public Optional<Double> getBuy()
+        {
         return buy;
-    }
+        }
 
-    public void setSell(Optional<Double> sell) {
+    public void setSell(Optional<Double> sell)
+        {
         this.sell = sell;
-    }
+        }
 
-    public Optional<Double> getSell() {
+    public Optional<Double> getSell()
+        {
         return sell;
-    }
+        }
 
-    public void setMedium(Optional<Double> medium) {
+    public void setMedium(Optional<Double> medium)
+        {
         this.medium = medium;
-    }
+        }
 
-    public Optional<Double> getMedium() {
+    public Optional<Double> getMedium()
+        {
         return medium;
-    }
+        }
 
-    public void setExchangeRateDateForBuyAndSell(String exchangeRateDate) {
+    public void setExchangeRateDateForBuyAndSell(String exchangeRateDate)
+        {
         this.exchangeRateDateForBuyAndSell = Optional.ofNullable(LocalDate.parse(exchangeRateDate));
-    }
+        }
 
-    public Optional<LocalDate> getExchangeRateDateForBuyAndSell() {
+    public Optional<LocalDate> getExchangeRateDateForBuyAndSell()
+        {
         return exchangeRateDateForBuyAndSell;
-    }
+        }
 
-    public void setExchangeRateDateForMid(String exchangeRateDate) {
+    public void setExchangeRateDateForMid(String exchangeRateDate)
+        {
         this.exchangeRateDateForMid = Optional.ofNullable(LocalDate.parse(exchangeRateDate));
-    }
+        }
 
-    public Optional<LocalDate> getExchangeRateDateForMid() {
+    public Optional<LocalDate> getExchangeRateDateForMid()
+        {
         return exchangeRateDateForMid;
-    }
+        }
 
 
-    public String toString() {
-        String result = "\nCurrency: " + currency+"\n";
-        if (exchangeRateDateForBuyAndSell.isPresent()) {
+    public String toString()
+        {
+        String result = "\nCurrency: " + currency + "\n";
+        if(exchangeRateDateForBuyAndSell.isPresent())
+        {
             result += "ExchangeRateDateForBuyAndSell: " + exchangeRateDateForBuyAndSell.get() + "  ";
         }
 
-        if (buy.isPresent()) {
+        if(buy.isPresent())
+        {
             result += "Buy: " + buy.get() + "  ";
         }
 
-        if (sell.isPresent()) {
+        if(sell.isPresent())
+        {
             result += "Sell: " + sell.get() + "\n";
         }
 
-        if (exchangeRateDateForMid.isPresent()) {
+        if(exchangeRateDateForMid.isPresent())
+        {
             result += "ExchangeRateDateForMid: " + exchangeRateDateForMid.get() + "  ";
 
         }
-        if (medium.isPresent()) {
+        if(medium.isPresent())
+        {
             result += "Medium: " + medium.get();
         }
         return result;
-    }
+        }
 }
 
 

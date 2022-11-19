@@ -6,8 +6,7 @@ import com.google.gson.annotations.SerializedName;
 
 import javax.annotation.processing.Generated;
 
-@Generated("jsonschema2pojo")
-public class RateEmbA_B {
+@Generated("jsonschema2pojo") public class RateEmbA_B {
 
     @SerializedName("no")
     @Expose
@@ -19,36 +18,38 @@ public class RateEmbA_B {
     @Expose
     private Double mid;
 
-    public String getNo() {
+    public String getNo()
+        {
         return no;
-    }
+        }
 
-    public void setNo(String no) {
+    public void setNo(String no)
+        {
         this.no = no;
-    }
+        }
 
-    public String getEffectiveDate() {
+    public String getEffectiveDate()
+        {
         return effectiveDate;
-    }
+        }
 
-    public void setEffectiveDate(String effectiveDate) {
+    public void setEffectiveDate(String effectiveDate)
+        {
         this.effectiveDate = effectiveDate;
-    }
+        }
 
-    public Double getMid() {
+    public Double getMid()
+        {
         return mid;
-    }
+        }
 
-    public void setMid(Double mid) {
+    public void setMid(Double mid)
+        {
         this.mid = mid;
-    }
+        }
 
-    @Override
-    public String toString() {
-        return "RateEmb {" +
-                "no='" + no + '\'' +
-                ", effectiveDate='" + effectiveDate + '\'' +
-                ", mid=" + mid +
-                '}';
-    }
+    @Override public String toString()
+        {
+        return "RateEmb {" + "no='" + no + '\'' + ", effectiveDate='" + effectiveDate + '\'' + ", mid=" + mid + '}';
+        }
 }

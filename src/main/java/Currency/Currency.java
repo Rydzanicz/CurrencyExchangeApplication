@@ -1,5 +1,5 @@
 package Currency;
 
-public enum  Currency {
-    EUR,USD,GBP,CHF
+public enum Currency {
+    EUR, USD, GBP, CHF
 }

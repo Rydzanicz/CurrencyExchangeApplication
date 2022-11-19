@@ -6,8 +6,7 @@ import com.google.gson.annotations.SerializedName;
 
 import javax.annotation.processing.Generated;
 
-@Generated("jsonschema2pojo")
-public class RateEmbC {
+@Generated("jsonschema2pojo") public class RateEmbC {
 
     @SerializedName("no")
     @Expose
@@ -22,45 +21,48 @@ public class RateEmbC {
     @Expose
     private Double ask;
 
-    public String getNo() {
+    public String getNo()
+        {
         return no;
-    }
+        }
 
-    public void setNo(String no) {
+    public void setNo(String no)
+        {
         this.no = no;
-    }
+        }
 
-    public String getEffectiveDate() {
+    public String getEffectiveDate()
+        {
         return effectiveDate;
-    }
+        }
 
-    public void setEffectiveDate(String effectiveDate) {
+    public void setEffectiveDate(String effectiveDate)
+        {
         this.effectiveDate = effectiveDate;
-    }
+        }
 
-    public Double getBid() {
+    public Double getBid()
+        {
         return bid;
-    }
+        }
 
-    public void setBid(Double bid) {
+    public void setBid(Double bid)
+        {
         this.bid = bid;
-    }
+        }
 
-    public Double getAsk() {
+    public Double getAsk()
+        {
         return ask;
-    }
+        }
 
-    public void setAsk(Double ask) {
+    public void setAsk(Double ask)
+        {
         this.ask = ask;
-    }
+        }
 
-    @Override
-    public String toString() {
-        return "RateEmb {" +
-                "no='" + no + '\'' +
-                ", effectiveDate='" + effectiveDate + '\'' +
-                ", bid=" + bid +
-                ", ask=" + ask +
-                '}';
-    }
+    @Override public String toString()
+        {
+        return "RateEmb {" + "no='" + no + '\'' + ", effectiveDate='" + effectiveDate + '\'' + ", bid=" + bid + ", ask=" + ask + '}';
+        }
 }
