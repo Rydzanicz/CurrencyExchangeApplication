@@ -9,61 +9,44 @@ import java.util.List;
 
 @Generated("jsonschema2pojo") public class RateA_B {
 
-    @SerializedName("table")
-    @Expose
-    private String table;
-    @SerializedName("currency")
-    @Expose
-    private String currency;
-    @SerializedName("code")
-    @Expose
-    private String code;
-    @SerializedName("rates")
-    @Expose
-    private List<RateEmbA_B> rates = null;
+    @SerializedName("table") @Expose private String table;
+    @SerializedName("currency") @Expose private String currency;
+    @SerializedName("code") @Expose private String code;
+    @SerializedName("rates") @Expose private List<RateEmbA_B> rates = null;
 
-    public String getTable()
-        {
+    public String getTable() {
         return table;
-        }
+    }
 
-    public void setTable(String table)
-        {
+    public void setTable(String table) {
         this.table = table;
-        }
+    }
 
-    public String getCurrency()
-        {
+    public String getCurrency() {
         return currency;
-        }
+    }
 
-    public void setCurrency(String currency)
-        {
+    public void setCurrency(String currency) {
         this.currency = currency;
-        }
+    }
 
-    public String getCode()
-        {
+    public String getCode() {
         return code;
-        }
+    }
 
-    public void setCode(String code)
-        {
+    public void setCode(String code) {
         this.code = code;
-        }
+    }
 
-    public List<RateEmbA_B> getRates()
-        {
+    public List<RateEmbA_B> getRates() {
         return rates;
-        }
+    }
 
-    public void setRates(List<RateEmbA_B> rates)
-        {
+    public void setRates(List<RateEmbA_B> rates) {
         this.rates = rates;
-        }
+    }
 
-    @Override public String toString()
-        {
+    @Override public String toString() {
         return "Rate{" + "table='" + table + '\'' + ", currency='" + currency + '\'' + ", code='" + code + '\'' + ", rates=" + rates + '}';
-        }
+    }
 }

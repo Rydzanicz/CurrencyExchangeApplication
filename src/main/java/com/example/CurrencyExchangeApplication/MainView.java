@@ -10,15 +10,26 @@ import com.vaadin.flow.router.Route;
 import java.io.IOException;
 import java.time.LocalDate;
 
-@Route("")
-public class MainView extends VerticalLayout {
+@Route("") public class MainView extends VerticalLayout {
+    private final NBPClient clientNBP;
+    private final LocalDate localDate;
 
-    public MainView() throws IOException
-        {
-        NBPClient clientNBP = new NBPClient();
-        LocalDate localDate = LocalDate.now().minusDays(2);
+    public MainView() {
+        clientNBP = new NBPClient();
+        localDate = LocalDate.now().minusDays(2);
+
+        showCalculator();
+    }
+
+    private void showCalculator() {
         CurrencyRate currencyRate = new CurrencyRate(Currency.USD);
-        currencyRate = clientNBP.getCurrencyExchangeRateBuyAndSell(currencyRate);
-        add(new H1(currencyRate.toString()));
+
+        try {
+            currencyRate = clientNBP.getCurrencyExchangeRateBuyAndSell(currencyRate);
+        } catch (IOException e) {
+            System.out.println("Nie udało się pobrać dane");
         }
+        add(new H1(currencyRate.toString()));
+
+    }
 }

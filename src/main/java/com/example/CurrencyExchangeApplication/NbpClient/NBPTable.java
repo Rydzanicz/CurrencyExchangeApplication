@@ -1,5 +1,5 @@
 package com.example.CurrencyExchangeApplication.NbpClient;
 
-public enum NBPTable{
+public enum NBPTable {
     A, B, C
 }
