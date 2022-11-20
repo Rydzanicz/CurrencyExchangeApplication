@@ -4,14 +4,13 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import javax.annotation.processing.Generated;
-import java.util.List;
 
 @Generated("jsonschema2pojo") public class RateAllCurrency {
 
     @SerializedName("table") @Expose private String table;
     @SerializedName("no") @Expose private String no;
     @SerializedName("effectiveDate") @Expose private String effectiveDate;
-    @SerializedName("rates") @Expose private List<RateEmbAllCurrency> rates = null;
+    @SerializedName("rates") @Expose private RateEmbAllCurrency[] rates = null;
 
     public String getTable() {
         return table;
@@ -37,13 +36,11 @@ import java.util.List;
         this.effectiveDate = effectiveDate;
     }
 
-    public List<RateEmbAllCurrency> getRates() {
+    public RateEmbAllCurrency[] getRates() {
         return rates;
     }
 
-    public void setRates(List<RateEmbAllCurrency> rates) {
-        this.rates = rates;
-    }
+
 
     @Override public String toString() {
         return "Rate{" + "table='" + table + '\'' + ", no='" + no + '\'' + ", effectiveDate='" + effectiveDate + '\'' + ", rates=" + rates + '}';

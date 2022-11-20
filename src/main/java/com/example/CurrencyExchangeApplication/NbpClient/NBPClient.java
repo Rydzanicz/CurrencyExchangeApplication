@@ -1,10 +1,13 @@
 package com.example.CurrencyExchangeApplication.NbpClient;
 
 
+import com.example.CurrencyExchangeApplication.NbpClient.Currency.Currency;
 import com.example.CurrencyExchangeApplication.NbpClient.Currency.CurrencyRate;
 import com.example.CurrencyExchangeApplication.NbpClient.Currency.CurrencyRateList;
+import com.example.CurrencyExchangeApplication.NbpClient.Currency.CurrencyRatesAllList;
 import com.example.CurrencyExchangeApplication.NbpClient.Table_A_B.RateA_B;
 import com.example.CurrencyExchangeApplication.NbpClient.Table_AllCurrency.RateAllCurrency;
+import com.example.CurrencyExchangeApplication.NbpClient.Table_AllCurrency.RateEmbAllCurrency;
 import com.example.CurrencyExchangeApplication.NbpClient.Table_C.RateC;
 import com.google.gson.Gson;
 
@@ -92,15 +95,33 @@ public class NBPClient {
         return currencyRateList;
     }
 
-    public CurrencyRateList getCurrencyExchangeAll(CurrencyRateList currencyRateList) throws IOException {
-
+    public CurrencyRatesAllList getNewCurrencyExchangeAll(CurrencyRatesAllList currencyRateList) throws IOException {
+        currencyRateList = new CurrencyRatesAllList();
 
         jsonUrl = NBP_API_URL_All_CURRENCY + FORMAT_JSON;
         URL url = new URL(jsonUrl);
         InputStreamReader reader = new InputStreamReader(url.openStream());
+        Gson gson = new Gson();
+        RateAllCurrency[] rateAllCurrencies = gson.fromJson(reader, RateAllCurrency[].class);
 
-        RateAllCurrency rateAllCurrency = new Gson().fromJson(reader, RateAllCurrency.class);
+        RateEmbAllCurrency[] rateEmbAllCurrency = rateAllCurrencies[ 0 ].getRates();
 
+        Optional<LocalDate> localDate = Optional.ofNullable(LocalDate.parse(rateAllCurrencies[ 0 ].getEffectiveDate()));
+
+        for(int i = 0; i < rateEmbAllCurrency.length; i++) {
+            for(Currency currency : Currency.values()) {
+                if (currency.name().equalsIgnoreCase(rateEmbAllCurrency[ i ].getCode())) {
+                    CurrencyRate localCurrencyRate = new CurrencyRate(rateEmbAllCurrency[ i ].getCode(),
+                                                                      Optional.empty(),
+                                                                      Optional.empty(),
+                                                                      Optional.empty(),
+                                                                      localDate,
+                                                                      Optional.ofNullable(rateEmbAllCurrency[ i ].getMid()));
+                    currencyRateList.addCurrencyRate(localCurrencyRate);
+                }
+            }
+        }
+        currencyRateList.getCurrencyRate();
         return currencyRateList;
     }
 

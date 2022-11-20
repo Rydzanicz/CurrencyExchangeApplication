@@ -7,11 +7,11 @@ public class CurrencyRatesAllList {
 
     private final List<CurrencyRate> currencyRate;
 
-    public CurrencyRatesAllList(Currency currency, List<CurrencyRate> currencyRates) {
+    public CurrencyRatesAllList(List<CurrencyRate> currencyRates) {
         this.currencyRate = currencyRates;
     }
 
-    public CurrencyRatesAllList(Currency currency) {
+    public CurrencyRatesAllList() {
 
         this.currencyRate = new ArrayList<>();
     }
@@ -21,9 +21,6 @@ public class CurrencyRatesAllList {
     }
 
     public void addCurrencyRate(CurrencyRate currencyRate) {
-        for(int x = 0; x < this.currencyRate.size(); x++) {
-
-        }
         this.currencyRate.add(currencyRate);
     }
 

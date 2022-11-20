@@ -25,6 +25,33 @@ public class CurrencyRate {
         this.medium = medium;
     }
 
+    public CurrencyRate(String currency,
+                        Optional<LocalDate> exchangeRateDateForBuyAndSell,
+                        Optional<Double> buy,
+                        Optional<Double> sell,
+                        Optional<LocalDate> exchangeRateDateForMid,
+                        Optional<Double> medium) {
+        this.currency = Currency.valueOf(currency);
+        this.exchangeRateDateForBuyAndSell = exchangeRateDateForBuyAndSell;
+        this.exchangeRateDateForMid = exchangeRateDateForMid;
+        this.buy = buy;
+        this.sell = sell;
+        this.medium = medium;
+
+
+    }
+
+    public CurrencyRate() {
+        this.currency = null;
+        this.exchangeRateDateForBuyAndSell = Optional.empty();
+        this.exchangeRateDateForMid = Optional.empty();
+        this.buy = Optional.empty();
+        this.sell = Optional.empty();
+        this.medium = Optional.empty();
+
+
+    }
+
     public CurrencyRate(Currency currency) {
         this.currency = currency;
         this.exchangeRateDateForBuyAndSell = Optional.empty();

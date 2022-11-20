@@ -1,5 +1,6 @@
 package com.example.CurrencyExchangeApplication.NbpClient.Currency;
 
 public enum Currency {
-    EUR, USD, GBP, CHF
+    EUR, USD, GBP, CHF, JPY, PLN
+
 }
