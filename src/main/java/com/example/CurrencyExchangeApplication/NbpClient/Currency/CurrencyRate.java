@@ -6,9 +6,9 @@ import java.util.Optional;
 public class CurrencyRate {
     private final Currency currency;
     private Optional<LocalDate> exchangeRateDateForBuyAndSell;
-    private Optional<LocalDate> exchangeRateDateForMid;
     private Optional<Double> buy;
     private Optional<Double> sell;
+    private Optional<LocalDate> exchangeRateDateForMid;
     private Optional<Double> medium;
 
     public CurrencyRate(Currency currency,
