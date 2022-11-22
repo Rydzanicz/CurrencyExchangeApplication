@@ -19,7 +19,6 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.LinkedList;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class NBPClient {
@@ -42,8 +41,8 @@ public class NBPClient {
 
         RateC rateC = new Gson().fromJson(reader, RateC.class);
         currencyRate.setExchangeRateDateForBuyAndSell(rateC.getRates().get(0).getEffectiveDate());
-        currencyRate.setBuy(java.util.Optional.ofNullable(rateC.getRates().get(0).getBid()));
-        currencyRate.setSell(java.util.Optional.ofNullable(rateC.getRates().get(0).getAsk()));
+        currencyRate.setBuy(rateC.getRates().get(0).getBid());
+        currencyRate.setSell(rateC.getRates().get(0).getAsk());
         return currencyRate;
     }
 
@@ -56,7 +55,7 @@ public class NBPClient {
 
         RateA_B rateA_b = new Gson().fromJson(reader, RateA_B.class);
         currencyRate.setExchangeRateDateForMid(rateA_b.getRates().get(0).getEffectiveDate());
-        currencyRate.setMedium(java.util.Optional.ofNullable(rateA_b.getRates().get(0).getMid()));
+        currencyRate.setMedium(rateA_b.getRates().get(0).getMid());
         return currencyRate;
     }
 
@@ -72,11 +71,11 @@ public class NBPClient {
         Collection<CurrencyRate> localCurrencyRate = rateA_b.getRates()
                 .stream()
                 .map(x -> new CurrencyRate(currencyRateList.getCurrency(),
-                        Optional.empty(),
-                        Optional.empty(),
-                        Optional.empty(),
-                        Optional.of(LocalDate.parse(x.getEffectiveDate())),
-                        Optional.of(x.getMid())))
+                        null,
+                        null,
+                        null,
+                        LocalDate.parse(x.getEffectiveDate()),
+                        x.getMid()))
                 .collect(Collectors.toCollection(LinkedList::new));
         for (int x = 0; x < localCurrencyRate.size(); x++) {
             currencyRateList.addCurrencyRate(localCurrencyRate.stream().toList().get(x));
@@ -94,17 +93,17 @@ public class NBPClient {
         RateAllC[] rateAllCS = new Gson().fromJson(reader, RateAllC[].class);
         RateEmbAllC[] rateEmbC = rateAllCS[0].getRates();
 
-        Optional<LocalDate> localDate = Optional.ofNullable(LocalDate.parse(rateAllCS[0].getEffectiveDate()));
+        LocalDate localDate = LocalDate.parse(rateAllCS[0].getEffectiveDate());
 
         for (int i = 0; i < rateEmbC.length; i++) {
             for (Currency currency : Currency.values()) {
                 if (currency.name().equalsIgnoreCase(rateEmbC[i].getCode())) {
                     CurrencyRate localCurrencyRate = new CurrencyRate(rateEmbC[i].getCode(),
                             localDate,
-                            Optional.of(rateEmbC[i].getBid()),
-                            Optional.of(rateEmbC[i].getAsk()),
-                            Optional.empty(),
-                            Optional.empty());
+                            rateEmbC[i].getBid(),
+                            rateEmbC[i].getAsk(),
+                            null,
+                            null);
                     currencyRateList.addCurrencyRate(localCurrencyRate);
                 }
             }
@@ -124,17 +123,17 @@ public class NBPClient {
 
         RateEmbAllCurrency[] rateEmbAllCurrency = rateAllCurrencies[0].getRates();
 
-        Optional<LocalDate> localDate = Optional.ofNullable(LocalDate.parse(rateAllCurrencies[0].getEffectiveDate()));
+        LocalDate localDate = LocalDate.parse(rateAllCurrencies[0].getEffectiveDate());
 
         for (int i = 0; i < rateEmbAllCurrency.length; i++) {
             for (Currency currency : Currency.values()) {
                 if (currency.name().equalsIgnoreCase(rateEmbAllCurrency[i].getCode())) {
                     CurrencyRate localCurrencyRate = new CurrencyRate(rateEmbAllCurrency[i].getCode(),
-                            Optional.empty(),
-                            Optional.empty(),
-                            Optional.empty(),
+                            null,
+                            null,
+                            null,
                             localDate,
-                            Optional.ofNullable(rateEmbAllCurrency[i].getMid()));
+                            rateEmbAllCurrency[i].getMid());
                     currencyRateList.addCurrencyRate(localCurrencyRate);
                 }
             }
@@ -151,14 +150,14 @@ public class NBPClient {
         int length = Math.max(currencyRatesAllListMid.getCurrencyRate().size(), currencyRatesAllListBuySell.getCurrencyRate().size());
 
         for (int i = 0; i < length; i++) {
-                CurrencyRate localCurrencyRate = new CurrencyRate(currencyRatesAllListBuySell.getCurrencyRate().get(i).getCurrency().name(),
-                        currencyRatesAllListBuySell.getCurrencyRate().get(i).getExchangeRateDateForBuyAndSell(),
-                        currencyRatesAllListBuySell.getCurrencyRate().get(i).getBuy(),
-                        currencyRatesAllListBuySell.getCurrencyRate().get(i).getSell(),
-                        currencyRatesAllListMid.getCurrencyRate().get(i).getExchangeRateDateForMid(),
-                        currencyRatesAllListMid.getCurrencyRate().get(i).getMedium());
-                currencyRateList.addCurrencyRate(localCurrencyRate);
-            }
+            CurrencyRate localCurrencyRate = new CurrencyRate(currencyRatesAllListBuySell.getCurrencyRate().get(i).getCurrency().name(),
+                    currencyRatesAllListBuySell.getCurrencyRate().get(i).getExchangeRateDateForBuyAndSell(),
+                    currencyRatesAllListBuySell.getCurrencyRate().get(i).getBuy(),
+                    currencyRatesAllListBuySell.getCurrencyRate().get(i).getSell(),
+                    currencyRatesAllListMid.getCurrencyRate().get(i).getExchangeRateDateForMid(),
+                    currencyRatesAllListMid.getCurrencyRate().get(i).getMedium());
+            currencyRateList.addCurrencyRate(localCurrencyRate);
+        }
 
         return currencyRateList;
     }

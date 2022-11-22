@@ -1,22 +1,21 @@
 package com.example.CurrencyExchangeApplication.NbpClient.Currency;
 
 import java.time.LocalDate;
-import java.util.Optional;
 
 public class CurrencyRate {
     private final Currency currency;
-    private Optional<LocalDate> exchangeRateDateForBuyAndSell;
-    private Optional<Double> buy;
-    private Optional<Double> sell;
-    private Optional<LocalDate> exchangeRateDateForMid;
-    private Optional<Double> medium;
+    private LocalDate exchangeRateDateForBuyAndSell;
+    private Double buy;
+    private Double sell;
+    private LocalDate exchangeRateDateForMid;
+    private Double medium;
 
     public CurrencyRate(Currency currency,
-                        Optional<LocalDate> exchangeRateDateForBuyAndSell,
-                        Optional<Double> buy,
-                        Optional<Double> sell,
-                        Optional<LocalDate> exchangeRateDateForMid,
-                        Optional<Double> medium) {
+                        LocalDate exchangeRateDateForBuyAndSell,
+                        Double buy,
+                        Double sell,
+                        LocalDate exchangeRateDateForMid,
+                        Double medium) {
         this.currency = currency;
         this.exchangeRateDateForBuyAndSell = exchangeRateDateForBuyAndSell;
         this.exchangeRateDateForMid = exchangeRateDateForMid;
@@ -26,11 +25,11 @@ public class CurrencyRate {
     }
 
     public CurrencyRate(String currency,
-                        Optional<LocalDate> exchangeRateDateForBuyAndSell,
-                        Optional<Double> buy,
-                        Optional<Double> sell,
-                        Optional<LocalDate> exchangeRateDateForMid,
-                        Optional<Double> medium) {
+                        LocalDate exchangeRateDateForBuyAndSell,
+                        Double buy,
+                        Double sell,
+                        LocalDate exchangeRateDateForMid,
+                        Double medium) {
         this.currency = Currency.valueOf(currency);
         this.exchangeRateDateForBuyAndSell = exchangeRateDateForBuyAndSell;
         this.exchangeRateDateForMid = exchangeRateDateForMid;
@@ -43,22 +42,22 @@ public class CurrencyRate {
 
     public CurrencyRate() {
         this.currency = null;
-        this.exchangeRateDateForBuyAndSell = Optional.empty();
-        this.exchangeRateDateForMid = Optional.empty();
-        this.buy = Optional.empty();
-        this.sell = Optional.empty();
-        this.medium = Optional.empty();
+        this.exchangeRateDateForBuyAndSell = null;
+        this.exchangeRateDateForMid = null;
+        this.buy = null;
+        this.sell = null;
+        this.medium = null;
 
 
     }
 
     public CurrencyRate(Currency currency) {
         this.currency = currency;
-        this.exchangeRateDateForBuyAndSell = Optional.empty();
-        this.exchangeRateDateForMid = Optional.empty();
-        this.buy = Optional.empty();
-        this.sell = Optional.empty();
-        this.medium = Optional.empty();
+        this.exchangeRateDateForBuyAndSell = null;
+        this.exchangeRateDateForMid = null;
+        this.buy = null;
+        this.sell = null;
+        this.medium = null;
 
     }
 
@@ -66,68 +65,58 @@ public class CurrencyRate {
         return currency;
     }
 
-    public void setBuy(Optional<Double> buy) {
+    public void setBuy(Double buy) {
         this.buy = buy;
     }
 
-    public Optional<Double> getBuy() {
+    public Double getBuy() {
         return buy;
     }
 
-    public void setSell(Optional<Double> sell) {
+    public void setSell(Double sell) {
         this.sell = sell;
     }
 
-    public Optional<Double> getSell() {
+    public Double getSell() {
         return sell;
     }
 
-    public void setMedium(Optional<Double> medium) {
+    public void setMedium(Double medium) {
         this.medium = medium;
     }
 
-    public Optional<Double> getMedium() {
+    public Double getMedium() {
         return medium;
     }
 
     public void setExchangeRateDateForBuyAndSell(String exchangeRateDate) {
-        this.exchangeRateDateForBuyAndSell = Optional.ofNullable(LocalDate.parse(exchangeRateDate));
+        this.exchangeRateDateForBuyAndSell = LocalDate.parse(exchangeRateDate);
     }
 
-    public Optional<LocalDate> getExchangeRateDateForBuyAndSell() {
+    public LocalDate getExchangeRateDateForBuyAndSell() {
         return exchangeRateDateForBuyAndSell;
     }
 
     public void setExchangeRateDateForMid(String exchangeRateDate) {
-        this.exchangeRateDateForMid = Optional.ofNullable(LocalDate.parse(exchangeRateDate));
+        this.exchangeRateDateForMid = LocalDate.parse(exchangeRateDate);
     }
 
-    public Optional<LocalDate> getExchangeRateDateForMid() {
+    public LocalDate getExchangeRateDateForMid() {
         return exchangeRateDateForMid;
     }
 
 
     public String toString() {
         String result = "\nCurrency: " + currency + "\n";
-        if (exchangeRateDateForBuyAndSell.isPresent()) {
-            result += "ExchangeRateDateForBuyAndSell: " + exchangeRateDateForBuyAndSell.get() + "  ";
-        }
+        result += "ExchangeRateDateForBuyAndSell: " + exchangeRateDateForBuyAndSell + "  ";
 
-        if (buy.isPresent()) {
-            result += "Buy: " + buy.get() + "  ";
-        }
+        result += "Buy: " + buy + "  ";
 
-        if (sell.isPresent()) {
-            result += "Sell: " + sell.get() + "\n";
-        }
+        result += "Sell: " + sell + "\n";
 
-        if (exchangeRateDateForMid.isPresent()) {
-            result += "ExchangeRateDateForMid: " + exchangeRateDateForMid.get() + "  ";
+        result += "ExchangeRateDateForMid: " + exchangeRateDateForMid + "  ";
 
-        }
-        if (medium.isPresent()) {
-            result += "Medium: " + medium.get();
-        }
+        result += "Medium: " + medium;
         return result;
     }
 }
