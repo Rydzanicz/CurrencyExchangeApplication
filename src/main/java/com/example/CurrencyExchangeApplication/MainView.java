@@ -17,18 +17,15 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Optional;
 
-@Route("")
-public class MainView extends VerticalLayout {
+@Route("") public class MainView extends VerticalLayout {
     private final NBPClient clientNBP;
     private final LocalDate localDate;
     private CurrencyRatesAllList currencyRateList;
     private final Button button = new Button("Sprawdź kurs");
-    private final TextField currencyHave = new TextField("Waluta");
-    private final TextField currencyHaveSelected = new TextField("");
-    private final TextField currencyGet = new TextField("Waluta");
-    private final TextField currencyGetSelected = new TextField("");
-    private Select<String> selectHave = new Select<>();
-    private Select<String> selectGet = new Select<>();
+    private final TextField currencyValueHave = new TextField("Waluta");
+    private final TextField currencyValueGet = new TextField("Waluta");
+    private final Select<String> selectHave = new Select<>();
+    private final Select<String> selectGet = new Select<>();
 
     public MainView() {
         clientNBP = new NBPClient();
@@ -37,20 +34,20 @@ public class MainView extends VerticalLayout {
 
         selectHave.setLabel("Mam");
         selectHave.setItems(Currency.EUR.toString(),
-                Currency.USD.toString(),
-                Currency.GBP.toString(),
-                Currency.CHF.toString(),
-                Currency.JPY.toString(),
-                Currency.PLN.toString());
+                            Currency.USD.toString(),
+                            Currency.GBP.toString(),
+                            Currency.CHF.toString(),
+                            Currency.JPY.toString(),
+                            Currency.PLN.toString());
         selectHave.setValue(Currency.PLN.toString());
 
         selectGet.setLabel("Dostane");
         selectGet.setItems(Currency.EUR.toString(),
-                Currency.USD.toString(),
-                Currency.GBP.toString(),
-                Currency.CHF.toString(),
-                Currency.JPY.toString(),
-                Currency.PLN.toString());
+                           Currency.USD.toString(),
+                           Currency.GBP.toString(),
+                           Currency.CHF.toString(),
+                           Currency.JPY.toString(),
+                           Currency.PLN.toString());
         selectGet.setValue(Currency.EUR.toString());
 
         showCalculator();
@@ -65,22 +62,49 @@ public class MainView extends VerticalLayout {
             System.out.println("Nie udało się pobrać dane");
         }
 
-        add(new HorizontalLayout(selectHave, currencyHave, button));
-        add(new HorizontalLayout(selectGet, currencyGet));
+        add(new HorizontalLayout(selectHave, currencyValueHave, button));
+        add(new HorizontalLayout(selectGet, currencyValueGet));
 
-        Optional<CurrencyRate> finalCurrencyRate1 = currencyRateList.getCurrencyRate()
-                .stream()
-                .filter(x -> x.getCurrency().equals(Currency.GBP))
-                .findFirst();
 
-        CurrencyRatesAllList finalCurrencyRateList = currencyRateList;
         button.addClickListener(e -> {
-            currencyHaveSelected.setValue(selectHave.getValue());
-            currencyGetSelected.setValue(selectGet.getValue());
 
-            add(new Paragraph(finalCurrencyRateList.toString()));
-            add(new Paragraph(finalCurrencyRate1.get().getBuy().toString()));
+            double calculation = getCalculation(Currency.valueOf(selectGet.getValue()),
+                                                Currency.valueOf(selectHave.getValue()),
+                                                Double.valueOf(currencyValueHave.getValue()));
+
+            currencyValueGet.setValue(String.valueOf(calculation));
+
+            add(new Paragraph(currencyValueHave.getValue()));
         });
+    }
+
+    private double getCalculation(final Currency getCurrency, final Currency haveCurrency, final Double currencyValueHave) {
+
+        Optional<CurrencyRate> getCurrencyRate = getCurrencyRate(getCurrency);
+        Optional<CurrencyRate> haveCurrencyRate = getCurrencyRate(haveCurrency);
+
+        if (getCurrency.equals(haveCurrency)) {
+            return currencyValueHave;
+        }
+        if (haveCurrency.equals(Currency.PLN)) {
+            if (getCurrencyRate.map(CurrencyRate::getBuy).isPresent()) {
+                return currencyValueHave * getCurrencyRate.map(CurrencyRate::getBuy).get();
+            }
+        }
+        if (getCurrency.equals(Currency.PLN)) {
+            if (haveCurrencyRate.map(CurrencyRate::getSell).isPresent()) {
+                return currencyValueHave * haveCurrencyRate.map(CurrencyRate::getSell).get();
+            }
+        }
+        double calculation = getCurrencyRate.map(CurrencyRate::getBuy).get() / haveCurrencyRate.map(CurrencyRate::getSell).get();
+
+        calculation = calculation * currencyValueHave;
+        return calculation;
+
+    }
+
+    private Optional<CurrencyRate> getCurrencyRate(final Currency currency) {
+        return currencyRateList.getCurrencyRate().stream().filter(x -> x.getCurrency().equals(currency)).findFirst();
     }
 
     private void showCurrencyChart() {

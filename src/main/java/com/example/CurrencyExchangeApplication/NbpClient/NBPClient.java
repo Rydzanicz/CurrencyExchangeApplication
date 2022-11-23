@@ -69,15 +69,15 @@ public class NBPClient {
 
         RateA_B rateA_b = new Gson().fromJson(reader, RateA_B.class);
         Collection<CurrencyRate> localCurrencyRate = rateA_b.getRates()
-                .stream()
-                .map(x -> new CurrencyRate(currencyRateList.getCurrency(),
-                        null,
-                        null,
-                        null,
-                        LocalDate.parse(x.getEffectiveDate()),
-                        x.getMid()))
-                .collect(Collectors.toCollection(LinkedList::new));
-        for (int x = 0; x < localCurrencyRate.size(); x++) {
+                                                            .stream()
+                                                            .map(x -> new CurrencyRate(currencyRateList.getCurrency(),
+                                                                                       null,
+                                                                                       null,
+                                                                                       null,
+                                                                                       LocalDate.parse(x.getEffectiveDate()),
+                                                                                       x.getMid()))
+                                                            .collect(Collectors.toCollection(LinkedList::new));
+        for(int x = 0; x < localCurrencyRate.size(); x++) {
             currencyRateList.addCurrencyRate(localCurrencyRate.stream().toList().get(x));
 
         }
@@ -91,19 +91,19 @@ public class NBPClient {
         URL url = new URL(jsonUrl);
         InputStreamReader reader = new InputStreamReader(url.openStream());
         RateAllC[] rateAllCS = new Gson().fromJson(reader, RateAllC[].class);
-        RateEmbAllC[] rateEmbC = rateAllCS[0].getRates();
+        RateEmbAllC[] rateEmbC = rateAllCS[ 0 ].getRates();
 
-        LocalDate localDate = LocalDate.parse(rateAllCS[0].getEffectiveDate());
+        LocalDate localDate = LocalDate.parse(rateAllCS[ 0 ].getEffectiveDate());
 
-        for (int i = 0; i < rateEmbC.length; i++) {
-            for (Currency currency : Currency.values()) {
-                if (currency.name().equalsIgnoreCase(rateEmbC[i].getCode())) {
-                    CurrencyRate localCurrencyRate = new CurrencyRate(rateEmbC[i].getCode(),
-                            localDate,
-                            rateEmbC[i].getBid(),
-                            rateEmbC[i].getAsk(),
-                            null,
-                            null);
+        for(int i = 0; i < rateEmbC.length; i++) {
+            for(Currency currency : Currency.values()) {
+                if (currency.name().equalsIgnoreCase(rateEmbC[ i ].getCode())) {
+                    CurrencyRate localCurrencyRate = new CurrencyRate(rateEmbC[ i ].getCode(),
+                                                                      localDate,
+                                                                      rateEmbC[ i ].getBid(),
+                                                                      rateEmbC[ i ].getAsk(),
+                                                                      null,
+                                                                      null);
                     currencyRateList.addCurrencyRate(localCurrencyRate);
                 }
             }
@@ -121,19 +121,19 @@ public class NBPClient {
         Gson gson = new Gson();
         RateAllCurrency[] rateAllCurrencies = gson.fromJson(reader, RateAllCurrency[].class);
 
-        RateEmbAllCurrency[] rateEmbAllCurrency = rateAllCurrencies[0].getRates();
+        RateEmbAllCurrency[] rateEmbAllCurrency = rateAllCurrencies[ 0 ].getRates();
 
-        LocalDate localDate = LocalDate.parse(rateAllCurrencies[0].getEffectiveDate());
+        LocalDate localDate = LocalDate.parse(rateAllCurrencies[ 0 ].getEffectiveDate());
 
-        for (int i = 0; i < rateEmbAllCurrency.length; i++) {
-            for (Currency currency : Currency.values()) {
-                if (currency.name().equalsIgnoreCase(rateEmbAllCurrency[i].getCode())) {
-                    CurrencyRate localCurrencyRate = new CurrencyRate(rateEmbAllCurrency[i].getCode(),
-                            null,
-                            null,
-                            null,
-                            localDate,
-                            rateEmbAllCurrency[i].getMid());
+        for(int i = 0; i < rateEmbAllCurrency.length; i++) {
+            for(Currency currency : Currency.values()) {
+                if (currency.name().equalsIgnoreCase(rateEmbAllCurrency[ i ].getCode())) {
+                    CurrencyRate localCurrencyRate = new CurrencyRate(rateEmbAllCurrency[ i ].getCode(),
+                                                                      null,
+                                                                      null,
+                                                                      null,
+                                                                      localDate,
+                                                                      rateEmbAllCurrency[ i ].getMid());
                     currencyRateList.addCurrencyRate(localCurrencyRate);
                 }
             }
@@ -149,13 +149,15 @@ public class NBPClient {
 
         int length = Math.max(currencyRatesAllListMid.getCurrencyRate().size(), currencyRatesAllListBuySell.getCurrencyRate().size());
 
-        for (int i = 0; i < length; i++) {
+        for(int i = 0; i < length; i++) {
             CurrencyRate localCurrencyRate = new CurrencyRate(currencyRatesAllListBuySell.getCurrencyRate().get(i).getCurrency().name(),
-                    currencyRatesAllListBuySell.getCurrencyRate().get(i).getExchangeRateDateForBuyAndSell(),
-                    currencyRatesAllListBuySell.getCurrencyRate().get(i).getBuy(),
-                    currencyRatesAllListBuySell.getCurrencyRate().get(i).getSell(),
-                    currencyRatesAllListMid.getCurrencyRate().get(i).getExchangeRateDateForMid(),
-                    currencyRatesAllListMid.getCurrencyRate().get(i).getMedium());
+                                                              currencyRatesAllListBuySell.getCurrencyRate()
+                                                                                         .get(i)
+                                                                                         .getExchangeRateDateForBuyAndSell(),
+                                                              currencyRatesAllListBuySell.getCurrencyRate().get(i).getBuy(),
+                                                              currencyRatesAllListBuySell.getCurrencyRate().get(i).getSell(),
+                                                              currencyRatesAllListMid.getCurrencyRate().get(i).getExchangeRateDateForMid(),
+                                                              currencyRatesAllListMid.getCurrencyRate().get(i).getMedium());
             currencyRateList.addCurrencyRate(localCurrencyRate);
         }
 
