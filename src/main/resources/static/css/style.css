@@ -1,0 +1,45 @@
+:root {
+    --color: #ffcc00;
+    --dark: #1b1b1b;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--color);
+    background: linear-gradient(to left top, var(--dark), var(--color));
+    overflow: hidden;
+
+}
+
+.container{
+    width:66%;
+    height:66%;
+     background: rgba(0,0,0,0.75);
+     background: linear-gradient(to right bottom, rgba(0,0,0,0.25), rgba(0,0,0,0.75));
+     border-radius: 20px;
+     position: relative;
+     backdrop-filter: blur(8px);
+}
+
+.backImg{
+    position: absolute;
+    top: 0;
+    right: 60%;
+    height:25vh;
+    animation: slide 5s linear infinite;
+}
+@keyframes slide {
+ from {transform: translateY(-25vh)}
+ to {transform: translateY(100vh)}
+}
