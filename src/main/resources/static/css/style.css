@@ -43,3 +43,40 @@ body {
  from {transform: translateY(-25vh)}
  to {transform: translateY(100vh)}
 }
+
+button{
+    width: 350px;
+    height: 10%;
+
+    margin-top: 32px;
+    font-size: 42px;
+    font-weight: 700;
+    color: #fff;
+    background: var(--color);
+    background: linear-gradient(to right bottom, var(--color), rgba(255,255,255,0.75));
+    border: none;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+button:focus {
+    outline-color: #fff;
+}
+
+button:after {
+    content:"";
+    background-color:rgba(255,255,255,0.4);
+    width: 50px;
+    height: 100%;
+    position: absolute;
+    left: -100px;
+    top: 0px;
+    transform: rotate(20deg);
+    transition: transform 0.5s;
+}
+
+button:hover:after {
+    transform: translateX(500px) rotate(20deg);
+
+}
