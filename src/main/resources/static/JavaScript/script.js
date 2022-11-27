@@ -1,15 +1,31 @@
 var selectFieldHave = document.getElementById("selectFieldHave");
-var selectText = document.getElementById("selectText");
-var options = document.getElementsByClassName("options");
-var list = document.getElementById("list");
+var selectTextHave = document.getElementById("selectTextHave");
+var optionsHave = document.getElementsByClassName("optionsHave");
+var listHave = document.getElementById("listHave");
 
 selectFieldHave.onclick = function(){
-    list.classList.toggle("hide");
+    listHave.classList.toggle("hideHave");
 }
 
-for(option of options){
+for(option of optionsHave){
     option.onclick = function(){
-        selectText.innerHTML = this.textContent;
-        list.classList.toggle("hide");
+        selectTextHave.innerHTML = this.textContent;
+        listHave.classList.toggle("hideHave");
+    }
+}
+
+var selectFieldGet = document.getElementById("selectFieldGet");
+var selectTextGet = document.getElementById("selectTextGet");
+var optionsGet = document.getElementsByClassName("optionsGet");
+var listGet = document.getElementById("listGet");
+
+selectFieldGet.onclick = function(){
+    listGet.classList.toggle("hideGet");
+}
+
+for(option of optionsGet){
+    option.onclick = function(){
+        selectTextGet.innerHTML = this.textContent;
+        listGet.classList.toggle("hideGet");
     }
 }

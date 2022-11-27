@@ -47,7 +47,7 @@ body {
 
 .coinsImg{
     position: absolute;
-    top: 65vh;
+    top: 0vh;
     left: 0vh;
     height: 40vh;
 }
@@ -99,7 +99,7 @@ button:hover:after {
 
 .exchange{
     position: absolute;
-    bottom: 5vh;
+    top: 15vh;
     right: 5vh;
 }
 
@@ -108,27 +108,35 @@ button:hover:after {
     height:60%;
     background-color: red;
 
-    position: relative;
-    top: 5%;
+    position: absolute;
+    bottom: 5%;
     left: 5%;
 
 }
 .selectors{
-   position: absolute;
-   bottom: 5vh;
+   position: relative;
+   top: 5vh;
    left: 5vh;
    height: 20vh;
    width: 40vh;
+   color:green:
 }
 
-.selector{
+.selectorHave{
     position: absolute;
-    top: 5vh;
-    left: 5vh;
+    top: 0vh;
+    left: 0vh;
     width: 25vh;
 }
 
-#selectFieldHave{
+.selectorGet{
+    position: absolute;
+    top: 0vh;
+    left: 30vh;
+    width: 25vh;
+}
+
+#selectFieldHave, #selectFieldGet{
     width: 100%;
     padding: 15px 20px;
     margin-bottom: 30px;
@@ -142,18 +150,18 @@ button:hover:after {
     justify-content: space-between;
 }
 
-#selectFieldHave img{
+#selectFieldHave img, #selectFieldGet img{
     width: 12px;
 }
 
-#list{
+#listHave, #listGet{
     width: 100%;
     background: rgba(255,255,255,0.7);
     border-radius: 6px;
     overflow: hidden;
 }
 
-.options {
+.optionsHave, .optionsGet {
     width: 100%;
     padding: 15px 0 15px 70px;
     list-style: none;
@@ -162,18 +170,18 @@ button:hover:after {
     position: relative;
 }
 
-.options img{
+.optionsHave img, .optionsGet img{
     width: 25px;
     position: absolute;
     top: 12px;
     left: 25px;
 }
 
-.options:hover{
+.optionsHave:hover, .optionsGet:hover{
     background: rgba(255,255,255,0.7);
 }
 
-.hide{
+.hideHave, .hideGet{
     visibility: hidden;
 }
 
@@ -214,7 +222,7 @@ input::-webkit-inner-spin-button {
 .result{
 
     position: absolute;
-    bottom: 10vh;
+    top: 10vh;
     right: 5vh;
     height: 10vh;
     width: 40vh;
