@@ -36,7 +36,7 @@ import java.util.Optional;
         Double currencyValueHave = 1.0;
         double calculation = getCalculation(selectGet, selectHave, currencyValueHave);
         modelMap.put("calculation",df.format(calculation));
-        modelMap.put("currency",Currency.values());
+        modelMap.put("lastBalance",df.format(calculation));
         return "mainView";
     }
 

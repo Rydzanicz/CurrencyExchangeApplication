@@ -2,17 +2,66 @@
 <html lang="pl-PL" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>MR Currency Exchange</title>
-    <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="./css/style.css" th:href="@{/css/style.css}">
 </head>
 <body>
-    <div class="back">
-        <img src="./img/exchange.png" alt="" class="backImg">
+<div class="back">
+    <img src="./img/exchange.png" alt="" class="backImg">
+    <img src="./img/coins.png" alt="" class="coinsImg">
+</div>
+<div class="container">
+    <div class="graph"></div>
+    <div class="selectors">
+
+        <div class="selector">
+            <div id="selectFieldHave">
+                <p id="selectText">Posiadana waluta</p>
+            </div>
+
+            <ul id="list" class="hide">
+                <li class="options">
+                    <img src="./img/PLN.png">
+                    <p>PLN</p>
+                </li>
+                <li class="options">
+                    <img src="./img/EUR.png">
+                    <p>EUR</p>
+                </li>
+                <li class="options">
+                    <img src="./img/USD.png">
+                    <p>USD</p>
+                </li>
+                <li class="options">
+                    <img src="./img/GBP.png">
+                    <p>GBP</p>
+                </li>
+                <li class="options">
+                    <img src="./img/CHF.png">
+                    <p>CHF</p>
+                </li>
+                <li class="options">
+                    <img src="./img/JPY.png">
+                    <p>JPY</p>
+                </li>
+            </ul>
+        </div>
+
     </div>
-    <div class="container">
-        <div class="graph"></div>
-        <button class="exchange">Wymień</button>
+    <div class="result">
+        <p>Wynik:
+            <span th:text="${calculation}"></span>
+        </p>
+        <p>Ostatnia transakcja:
+            <span th:text="${lastBalance}"></span>
+        </p>
+
     </div>
+    <button class="exchange">Wymień</button>
+</div>
+
+
+<script type="text/javascript" src="./JavaScript/script.js"></script>
 </body>
 </html>

@@ -7,6 +7,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: sans-serif;
 }
 
 body {
@@ -20,6 +21,10 @@ body {
     background: linear-gradient(to left top, var(--dark), var(--color));
     overflow: hidden;
 
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
 }
 
 .container{
@@ -40,6 +45,13 @@ body {
     animation: slide 15s linear infinite;
 }
 
+.coinsImg{
+    position: absolute;
+    top: 65vh;
+    left: 0vh;
+    height: 40vh;
+}
+
 @keyframes slide {
     from {
             transform: translateX(-25vh) translateY(-25vh);
@@ -52,7 +64,6 @@ body {
 button{
     width: 350px;
     height: 7%;
-
     margin-top: 32px;
     font-size: 38px;
     font-weight: 700;
@@ -63,6 +74,7 @@ button{
     cursor: pointer;
     position: relative;
     overflow: hidden;
+    border-radius:6px;
 }
 
 button:focus {
@@ -83,24 +95,127 @@ button:after {
 
 button:hover:after {
     transform: translateX(500px) rotate(20deg);
-
 }
 
 .exchange{
-    position: relative;
-
-    bottom:5%
-    left: 40%;
-
+    position: absolute;
+    bottom: 5vh;
+    right: 5vh;
 }
 
 .graph{
     width:90%;
-    height:50%;
+    height:60%;
     background-color: red;
 
     position: relative;
     top: 5%;
     left: 5%;
 
+}
+.selectors{
+   position: absolute;
+   bottom: 5vh;
+   left: 5vh;
+   height: 20vh;
+   width: 40vh;
+}
+
+.selector{
+    position: absolute;
+    top: 5vh;
+    left: 5vh;
+    width: 25vh;
+}
+
+#selectFieldHave{
+    width: 100%;
+    padding: 15px 20px;
+    margin-bottom: 30px;
+    box-sizing: border-box;
+    background: var(--color);
+    background: linear-gradient(to right bottom, var(--color), rgba(255,255,255,0.75));
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#selectFieldHave img{
+    width: 12px;
+}
+
+#list{
+    width: 100%;
+    background: rgba(255,255,255,0.7);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.options {
+    width: 100%;
+    padding: 15px 0 15px 70px;
+    list-style: none;
+    cursor: pointer;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.options img{
+    width: 25px;
+    position: absolute;
+    top: 12px;
+    left: 25px;
+}
+
+.options:hover{
+    background: rgba(255,255,255,0.7);
+}
+
+.hide{
+    visibility: hidden;
+}
+
+input{
+    width: 15vh;
+    background: rgba(255,255,255,0.2);
+    border: none;
+    outline: none;
+    padding: 10px 20px;
+    border-radius: 35px;
+    border: 1px solid rgba(255,255,255,0.5);
+    border-right: 1px solid rgba(255,255,255,0.2);
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    font-size: 20px;
+    letter-spacing: 1px;
+    color: #fff;
+    box- shadow: 0 5px 15px rgba(0,0,0,0.05);
+
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.amount{
+    position: absolute;
+    bottom: 5vh;
+    left: 5vh;
+}
+.commission{
+    position: absolute;
+    bottom: 0vh;
+    left: 5vh;
+}
+
+.result{
+
+    position: absolute;
+    bottom: 10vh;
+    right: 5vh;
+    height: 10vh;
+    width: 40vh;
 }
