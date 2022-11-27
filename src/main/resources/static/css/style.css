@@ -1,5 +1,5 @@
 :root {
-    --color: #ac00e6;
+    --color: #6666ff;
     --dark: #1b1b1b;
 }
 
@@ -52,6 +52,30 @@ body {
     height: 40vh;
 }
 
+.exchangeImg{
+    position: absolute;
+    top: 25vh;
+    right: 5vh;
+    height: 10vh;
+    -webkit-animation:spin 4s linear infinite;
+    -moz-animation:spin 4s linear infinite;
+    animation:spin 4s linear infinite;
+
+}
+
+@-moz-keyframes spin {
+    100% { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+    100% { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform:rotate(360deg);
+    }
+}
+
 @keyframes slide {
     from {
             transform: translateX(-25vh) translateY(-25vh);
@@ -62,7 +86,7 @@ body {
 }
 
 button{
-    width: 350px;
+    width: 25vh;
     height: 7%;
     margin-top: 32px;
     font-size: 38px;
@@ -97,7 +121,7 @@ button:hover:after {
     transform: translateX(500px) rotate(20deg);
 }
 
-.exchange{
+#exchangeButtonId{
     position: absolute;
     top: 15vh;
     right: 5vh;
@@ -124,14 +148,14 @@ button:hover:after {
 
 .selectorHave{
     position: absolute;
-    top: 0vh;
+    top: 13vh;
     left: 0vh;
-    width: 25vh;
+    width: 20vh;
 }
 
 .selectorGet{
     position: absolute;
-    top: 0vh;
+    top: 13vh;
     left: 30vh;
     width: 25vh;
 }
@@ -198,7 +222,7 @@ input{
     font-size: 20px;
     letter-spacing: 1px;
     color: #fff;
-    box- shadow: 0 5px 15px rgba(0,0,0,0.05);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.05);
 
 }
 
@@ -209,21 +233,20 @@ input::-webkit-inner-spin-button {
 }
 
 .amount{
-    position: absolute;
-    bottom: 5vh;
-    left: 5vh;
+    top: -2vh;
+    left: 0vh;
 }
+
 .commission{
     position: absolute;
-    bottom: 0vh;
-    left: 5vh;
+    top: 6vh;
+    left: 0vh;
 }
 
 .result{
-
     position: absolute;
     top: 10vh;
     right: 5vh;
     height: 10vh;
-    width: 40vh;
+    width: 30vh;
 }

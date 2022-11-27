@@ -8,13 +8,21 @@
 </head>
 <body>
 <div class="back">
-    <img src="./img/exchange.png" alt="" class="backImg">
     <img src="./img/coins.png" alt="" class="coinsImg">
+    <img src="./img/exchangeBack.png" alt="" class="backImg">
+    <img src="./img/exchangeLoad.png" alt="" class="exchangeImg">
 </div>
 <div class="container">
     <div class="graph"></div>
     <div class="selectors">
-
+        <div class="amount">
+            <input type="number" id="amount" value="1">
+            Kwota
+        </div>
+        <div class="commission">
+            <input type="number" id="commission" value="0.1">
+            Prowizję
+        </div>
         <div class="selectorHave">
             <div id="selectFieldHave">
                 <p id="selectTextHave">Mam walutę</p>
@@ -80,7 +88,6 @@
                 </li>
             </ul>
         </div>
-
     </div>
     <div class="result">
         <p>Wynik:
@@ -91,7 +98,7 @@
         </p>
 
     </div>
-    <button class="exchange">Wymień</button>
+        <button onclick="calculate()"  id="exchangeButtonId">Wymień</button>
 
 </div>
 
