@@ -29,3 +29,19 @@ for(option of optionsGet){
         listGet.classList.toggle("hideGet");
     }
 }
+
+function loadingAnimation() {
+    if (document.getElementById) {
+        document.getElementById('exchangeImg').style.visibility = 'visible';
+        }
+    setTimeout(() => {
+        const box = document.getElementById('exchangeImg');
+        box.style.visibility = 'hidden';
+    }, 1000);
+}
+
+function calculate() {
+    loadingAnimation();
+
+
+}

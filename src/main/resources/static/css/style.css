@@ -52,7 +52,7 @@ body {
     height: 40vh;
 }
 
-.exchangeImg{
+#exchangeImg{
     position: absolute;
     top: 25vh;
     right: 5vh;
@@ -60,7 +60,7 @@ body {
     -webkit-animation:spin 4s linear infinite;
     -moz-animation:spin 4s linear infinite;
     animation:spin 4s linear infinite;
-
+        visibility: hidden
 }
 
 @-moz-keyframes spin {
