@@ -40,8 +40,26 @@ function loadingAnimation() {
     }, 1000);
 }
 
+function validation() {
+    if(document.getElementById("amount").value == 0){
+        document.getElementById("amount").value = 1;
+    }
+    if(document.getElementById("commission").value == 0){
+        document.getElementById("commission").value = 0.05;
+    }
+}
+
 function calculate() {
-    loadingAnimation();
+        validation();
+        loadingAnimation();
+    var amount  = document.getElementById("amount").value;
+    var commission  = document.getElementById("commission").value;
+    var result = amount * commission;
 
 
+
+
+
+    var resultString ="Wynik: "+ result.toFixed(2);
+        document.getElementById("resultId").innerHTML = resultString;
 }
