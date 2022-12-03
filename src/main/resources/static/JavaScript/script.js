@@ -2,7 +2,8 @@ var selectFieldHave = document.getElementById("selectFieldHave");
 var selectTextHave = document.getElementById("selectTextHave");
 var optionsHave = document.getElementsByClassName("optionsHave");
 var listHave = document.getElementById("listHave");
-
+var currencyGet;
+var currencyHave;
 selectFieldHave.onclick = function(){
     listHave.classList.toggle("hideHave");
 }
@@ -11,6 +12,7 @@ for(option of optionsHave){
     option.onclick = function(){
         selectTextHave.innerHTML = this.textContent;
         listHave.classList.toggle("hideHave");
+        currencyHave = this.textContent;
     }
 }
 
@@ -27,6 +29,7 @@ for(option of optionsGet){
     option.onclick = function(){
         selectTextGet.innerHTML = this.textContent;
         listGet.classList.toggle("hideGet");
+        currencyGet = this.textContent;
     }
 }
 
@@ -54,11 +57,9 @@ function calculate() {
         loadingAnimation();
     var amount  = document.getElementById("amount").value;
     var commission  = document.getElementById("commission").value;
-    var result = amount * commission;
+    var commission  = amount * commission;
 
-
-
-
+    var result = amount - commission;
 
     var resultString ="Wynik: "+ result.toFixed(2);
         document.getElementById("resultId").innerHTML = resultString;
