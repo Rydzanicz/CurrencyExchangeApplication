@@ -59,8 +59,16 @@ function calculate() {
     var commission  = document.getElementById("commission").value;
     var commission  = amount * commission;
 
+    var selectFieldGet = document.getElementById("selectFieldGet");
+    var selectTextGet = document.getElementById("selectTextGet");
+
+    var url = "http://localhost:8080/calculation?haveCurrency="+currencyHave.trim()+"&getCurrency="+currencyGet.trim()+"&amount="+amount+"&commission="+commission;
     var result = amount - commission;
 
-    var resultString ="Wynik: "+ result.toFixed(2);
-        document.getElementById("resultId").innerHTML = resultString;
+        (async () => {
+                const response = await fetch(url )
+                result = await response.json()
+            var resultString ="Wynik: "+ result.toFixed(2);;
+                document.getElementById("resultId").innerHTML = resultString;
+        })()
 }
