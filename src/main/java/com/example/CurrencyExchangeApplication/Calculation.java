@@ -23,15 +23,35 @@ public class Calculation {
         this.commission = commission;
         this.clientNBP = new NBPClient();
         this.currencyRateList = new CurrencyRatesAllList();
-    }
-
-    public double getCalculation() {
         try {
             currencyRateList = clientNBP.getCurrencyExchangeRate();
 
         } catch (IOException e) {
             System.out.println("Nie udało się pobrać dane");
         }
+    }
+
+    public Calculation(final Currency selectHaveCurrency, final Currency selectGetCurrency) {
+        this.selectGetCurrency = selectGetCurrency;
+        this.selectHaveCurrency = selectHaveCurrency;
+        this.clientNBP = new NBPClient();
+        this.currencyRateList = new CurrencyRatesAllList();
+        this.amount = 1.0;
+        this.commission = 0.05;
+        try {
+            currencyRateList = clientNBP.getCurrencyExchangeRate();
+
+        } catch (IOException e) {
+            System.out.println("Nie udało się pobrać dane");
+        }
+    }
+
+    public double getCalculation() {
+        double currencyRat = getCurrencyRate();
+        double commissionLocal = calculationCommission(currencyRat);
+        return amount * currencyRat - commissionLocal;
+    }
+    public double getCurrencyRate() {
 
         Optional<CurrencyRate> getCurrencyRate = getCurrencyRate(this.selectGetCurrency);
         Optional<CurrencyRate> haveCurrencyRate = getCurrencyRate(this.selectHaveCurrency);
@@ -41,21 +61,14 @@ public class Calculation {
         }
 
         if (selectHaveCurrency.equals(Currency.PLN) && getCurrencyRate.map(CurrencyRate::getBuy).isPresent()) {
-            double currencyRat = getCurrencyRate.map(CurrencyRate::getBuy).get();
-            double commissionLocal = calculationCommission(currencyRat);
-            return amount * currencyRat - commissionLocal;
-
+            return getCurrencyRate.map(CurrencyRate::getBuy).get();
         }
 
         if (selectGetCurrency.equals(Currency.PLN) && haveCurrencyRate.map(CurrencyRate::getSell).isPresent()) {
-            double currencyRat = haveCurrencyRate.map(CurrencyRate::getSell).get();
-            double commissionLocal = calculationCommission(currencyRat);
-            return amount * currencyRat - commissionLocal;
+            return haveCurrencyRate.map(CurrencyRate::getSell).get();
         }
 
-        double currencyRat = getCurrencyRate.map(CurrencyRate::getBuy).get() / haveCurrencyRate.map(CurrencyRate::getSell).get();
-        double commissionLocal = calculationCommission(currencyRat);
-        return amount * currencyRat - commissionLocal;
+        return getCurrencyRate.map(CurrencyRate::getBuy).get() / haveCurrencyRate.map(CurrencyRate::getSell).get();
     }
 
     private double calculationCommission(final double currencyRat) {

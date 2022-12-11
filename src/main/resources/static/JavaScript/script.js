@@ -40,7 +40,7 @@ function loadingAnimation() {
     setTimeout(() => {
         const box = document.getElementById('exchangeImg');
         box.style.visibility = 'hidden';
-    }, 1000);
+    }, 500);
 }
 
 function validation() {
@@ -63,12 +63,18 @@ function calculate() {
     var selectTextGet = document.getElementById("selectTextGet");
 
     var url = "http://localhost:8080/calculation?haveCurrency="+currencyHave.trim()+"&getCurrency="+currencyGet.trim()+"&amount="+amount+"&commission="+commission;
-    var result = amount - commission;
-
         (async () => {
-                const response = await fetch(url )
+                const response = await fetch(url)
                 result = await response.json()
-            var resultString ="Wynik: "+ result.toFixed(2);;
+            var resultString ="Wynik: "+ result.toFixed(2);
                 document.getElementById("resultId").innerHTML = resultString;
-        })()
+        })();
+
+    var url = "http://localhost:8080/currencyRate?haveCurrency="+currencyHave.trim()+"&getCurrency="+currencyGet.trim();
+        (async () => {
+                const response = await fetch(url)
+                result = await response.json()
+            var resultString ="Ostatnia transakcja: "+ result.toFixed(2);
+                document.getElementById("lastBalanceId").innerHTML = resultString;
+            })();
 }

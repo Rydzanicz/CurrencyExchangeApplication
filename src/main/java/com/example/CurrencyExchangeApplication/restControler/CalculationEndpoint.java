@@ -27,4 +27,17 @@ import org.springframework.web.bind.annotation.*;
         return calculation.getCalculation();
     }
 
+    @RequestMapping(value = "/currencyRate", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public double getCalculation(@RequestParam(value = "haveCurrency", defaultValue = "PLN") String haveCurrency,
+                                 @RequestParam(value = "getCurrency", defaultValue = "PLN") String getCurrency) {
+        Currency haveCurrency1 = null;
+        Currency getCurrency1 = null;
+
+        haveCurrency1 = Currency.valueOf(haveCurrency);
+        getCurrency1 = Currency.valueOf(getCurrency);
+
+        Calculation calculation = new Calculation(haveCurrency1, getCurrency1);
+        return calculation.getCurrencyRate();
+    }
+
 }
