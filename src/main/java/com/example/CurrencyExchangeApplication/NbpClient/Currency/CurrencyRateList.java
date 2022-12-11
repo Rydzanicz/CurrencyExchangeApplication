@@ -1,6 +1,5 @@
 package com.example.CurrencyExchangeApplication.NbpClient.Currency;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CurrencyRateList {
@@ -12,20 +11,7 @@ public class CurrencyRateList {
         this.currencyRate = currencyRates;
     }
 
-    public CurrencyRateList(Currency currency) {
-
-        this.currency = currency;
-        this.currencyRate = new ArrayList<>();
-    }
-
-    public List<CurrencyRate> getCurrencyRate() {
-        return currencyRate;
-    }
-
     public void addCurrencyRate(CurrencyRate currencyRate) {
-        for(int x = 0; x < this.currencyRate.size(); x++) {
-
-        }
         this.currencyRate.add(currencyRate);
     }
 

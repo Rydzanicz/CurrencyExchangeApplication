@@ -4,6 +4,8 @@ import com.example.CurrencyExchangeApplication.NbpClient.Currency.Currency;
 import com.example.CurrencyExchangeApplication.NbpClient.Currency.CurrencyRate;
 import com.example.CurrencyExchangeApplication.NbpClient.Currency.CurrencyRatesAllList;
 import com.example.CurrencyExchangeApplication.NbpClient.NBPClient;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -15,6 +17,7 @@ public class Calculation {
     private final Double commission;
     private final NBPClient clientNBP;
     private CurrencyRatesAllList currencyRateList;
+    private static final Logger logger = LogManager.getLogger(Calculation.class);
 
     public Calculation(final Currency selectHaveCurrency, final Currency selectGetCurrency, final Double amount, final Double commission) {
         this.selectGetCurrency = selectGetCurrency;
@@ -27,7 +30,7 @@ public class Calculation {
             currencyRateList = clientNBP.getCurrencyExchangeRate();
 
         } catch (IOException e) {
-            System.out.println("Nie udało się pobrać dane");
+            logger.error("Nie udało się pobrać dane");
         }
     }
 
@@ -42,7 +45,7 @@ public class Calculation {
             currencyRateList = clientNBP.getCurrencyExchangeRate();
 
         } catch (IOException e) {
-            System.out.println("Nie udało się pobrać dane");
+            logger.error("Nie udało się pobrać dane");
         }
     }
 
@@ -77,25 +80,5 @@ public class Calculation {
 
     private Optional<CurrencyRate> getCurrencyRate(final Currency currency) {
         return currencyRateList.getCurrencyRate().stream().filter(x -> x.getCurrency().equals(currency)).findFirst();
-    }
-
-    public NBPClient getClientNBP() {
-        return clientNBP;
-    }
-
-    public Double getCommission() {
-        return commission;
-    }
-
-    public Double getAmount() {
-        return amount;
-    }
-
-    public Currency getSelectGetCurrency() {
-        return selectGetCurrency;
-    }
-
-    public Currency getSelectHaveCurrency() {
-        return selectHaveCurrency;
     }
 }

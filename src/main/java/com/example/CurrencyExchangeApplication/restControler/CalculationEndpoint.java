@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController public class CalculationEndpoint {
-    @RequestMapping(value = "/calculation", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/calculation", produces = MediaType.APPLICATION_JSON_VALUE)
     public double getCalculation(@RequestParam(value = "haveCurrency", defaultValue = "PLN") String haveCurrency,
                                  @RequestParam(value = "getCurrency", defaultValue = "PLN") String getCurrency,
                                  @RequestParam(value = "amount", defaultValue = "1.0") String amount,
                                  @RequestParam(value = "commission", defaultValue = "0.05") String commission) {
-        Currency haveCurrency1 = null;
-        Currency getCurrency1 = null;
+        Currency haveCurrency1;
+        Currency getCurrency1;
         double amount1;
         double commission1;
 
@@ -27,11 +27,11 @@ import org.springframework.web.bind.annotation.*;
         return calculation.getCalculation();
     }
 
-    @RequestMapping(value = "/currencyRate", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "/currencyRate", produces = MediaType.APPLICATION_JSON_VALUE)
     public double getCalculation(@RequestParam(value = "haveCurrency", defaultValue = "PLN") String haveCurrency,
                                  @RequestParam(value = "getCurrency", defaultValue = "PLN") String getCurrency) {
-        Currency haveCurrency1 = null;
-        Currency getCurrency1 = null;
+        Currency haveCurrency1;
+        Currency getCurrency1;
 
         haveCurrency1 = Currency.valueOf(haveCurrency);
         getCurrency1 = Currency.valueOf(getCurrency);

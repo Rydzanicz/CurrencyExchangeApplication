@@ -27,15 +27,12 @@ public class NBPClient {
     private static final String NBP_API_URL_All_CURRENCY_A = "http://api.nbp.pl/api/exchangerates/tables/a";
     private static final String NBP_API_URL_All_CURRENCY_C = "http://api.nbp.pl/api/exchangerates/tables/c";
     private static final String FORMAT_JSON = "/?format=json";
-    private static final String FORMAT_JSON_LAST_ONE = "/?format=json/last/1/?format=json/";
     private static final String FORMAT_JSON_LAST_ONE_HUNDRED = "/?format=json/last/100/?format=json/";
     private static final String SLASH = "/";
-    private static String jsonUrl;
-
 
     public CurrencyRate getCurrencyExchangeRateBuyAndSell(CurrencyRate currencyRate, LocalDate localDate) throws IOException {
 
-        jsonUrl = NBP_API_URL + NBPTable.C + SLASH + currencyRate.getCurrency() + SLASH + localDate + FORMAT_JSON;
+        String jsonUrl = NBP_API_URL + NBPTable.C + SLASH + currencyRate.getCurrency() + SLASH + localDate + FORMAT_JSON;
         URL url = new URL(jsonUrl);
         InputStreamReader reader = new InputStreamReader(url.openStream());
 
@@ -49,7 +46,7 @@ public class NBPClient {
     public CurrencyRate getCurrencyExchangeRateMedium(CurrencyRate currencyRate, LocalDate localDate) throws IOException {
 
 
-        jsonUrl = NBP_API_URL + NBPTable.A + SLASH + currencyRate.getCurrency() + SLASH + localDate + FORMAT_JSON;
+        String jsonUrl = NBP_API_URL + NBPTable.A + SLASH + currencyRate.getCurrency() + SLASH + localDate + FORMAT_JSON;
         URL url = new URL(jsonUrl);
         InputStreamReader reader = new InputStreamReader(url.openStream());
 
@@ -63,7 +60,7 @@ public class NBPClient {
                                                           LocalDate fromLocalDate,
                                                           LocalDate toLocalDate) throws IOException {
 
-        jsonUrl = NBP_API_URL + NBPTable.A + SLASH + currencyRateList.getCurrency() + SLASH + fromLocalDate + SLASH + toLocalDate + FORMAT_JSON;
+        String jsonUrl =  NBP_API_URL + NBPTable.A + SLASH + currencyRateList.getCurrency() + SLASH + fromLocalDate + SLASH + toLocalDate + FORMAT_JSON;
         URL url = new URL(jsonUrl);
         InputStreamReader reader = new InputStreamReader(url.openStream());
 
@@ -87,7 +84,7 @@ public class NBPClient {
     public CurrencyRatesAllList getCurrencyExchangeAllBuyAndSell() throws IOException {
         CurrencyRatesAllList currencyRateList = new CurrencyRatesAllList();
 
-        jsonUrl = NBP_API_URL_All_CURRENCY_C + FORMAT_JSON;
+        String jsonUrl =  NBP_API_URL_All_CURRENCY_C + FORMAT_JSON;
         URL url = new URL(jsonUrl);
         InputStreamReader reader = new InputStreamReader(url.openStream());
         RateAllC[] rateAllCS = new Gson().fromJson(reader, RateAllC[].class);
@@ -95,13 +92,13 @@ public class NBPClient {
 
         LocalDate localDate = LocalDate.parse(rateAllCS[ 0 ].getEffectiveDate());
 
-        for(int i = 0; i < rateEmbC.length; i++) {
+        for(RateEmbAllC rateEmbAllC : rateEmbC) {
             for(Currency currency : Currency.values()) {
-                if (currency.name().equalsIgnoreCase(rateEmbC[ i ].getCode())) {
-                    CurrencyRate localCurrencyRate = new CurrencyRate(rateEmbC[ i ].getCode(),
+                if (currency.name().equalsIgnoreCase(rateEmbAllC.getCode())) {
+                    CurrencyRate localCurrencyRate = new CurrencyRate(rateEmbAllC.getCode(),
                                                                       localDate,
-                                                                      rateEmbC[ i ].getBid(),
-                                                                      rateEmbC[ i ].getAsk(),
+                                                                      rateEmbAllC.getBid(),
+                                                                      rateEmbAllC.getAsk(),
                                                                       null,
                                                                       null);
                     currencyRateList.addCurrencyRate(localCurrencyRate);
@@ -115,7 +112,7 @@ public class NBPClient {
     public CurrencyRatesAllList getNewCurrencyExchangeAll() throws IOException {
         CurrencyRatesAllList currencyRateList = new CurrencyRatesAllList();
 
-        jsonUrl = NBP_API_URL_All_CURRENCY_A + FORMAT_JSON;
+        String jsonUrl =  NBP_API_URL_All_CURRENCY_A + FORMAT_JSON;
         URL url = new URL(jsonUrl);
         InputStreamReader reader = new InputStreamReader(url.openStream());
         Gson gson = new Gson();
@@ -125,15 +122,15 @@ public class NBPClient {
 
         LocalDate localDate = LocalDate.parse(rateAllCurrencies[ 0 ].getEffectiveDate());
 
-        for(int i = 0; i < rateEmbAllCurrency.length; i++) {
+        for(RateEmbAllCurrency embAllCurrency : rateEmbAllCurrency) {
             for(Currency currency : Currency.values()) {
-                if (currency.name().equalsIgnoreCase(rateEmbAllCurrency[ i ].getCode())) {
-                    CurrencyRate localCurrencyRate = new CurrencyRate(rateEmbAllCurrency[ i ].getCode(),
+                if (currency.name().equalsIgnoreCase(embAllCurrency.getCode())) {
+                    CurrencyRate localCurrencyRate = new CurrencyRate(embAllCurrency.getCode(),
                                                                       null,
                                                                       null,
                                                                       null,
                                                                       localDate,
-                                                                      rateEmbAllCurrency[ i ].getMid());
+                                                                      embAllCurrency.getMid());
                     currencyRateList.addCurrencyRate(localCurrencyRate);
                 }
             }
