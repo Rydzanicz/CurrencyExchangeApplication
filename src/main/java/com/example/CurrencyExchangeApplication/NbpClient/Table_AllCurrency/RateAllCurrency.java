@@ -16,31 +16,17 @@ import javax.annotation.processing.Generated;
         return table;
     }
 
-    public void setTable(String table) {
-        this.table = table;
-    }
-
     public String getNo() {
         return no;
-    }
-
-    public void setNo(String no) {
-        this.no = no;
     }
 
     public String getEffectiveDate() {
         return effectiveDate;
     }
 
-    public void setEffectiveDate(String effectiveDate) {
-        this.effectiveDate = effectiveDate;
-    }
-
     public RateEmbAllCurrency[] getRates() {
         return rates;
     }
-
-
 
     @Override public String toString() {
         return "Rate{" + "table='" + table + '\'' + ", no='" + no + '\'' + ", effectiveDate='" + effectiveDate + '\'' + ", rates=" + rates + '}';

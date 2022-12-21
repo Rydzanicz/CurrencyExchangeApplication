@@ -13,7 +13,13 @@
     <img src="./img/exchangeLoad.png" alt="" id="exchangeImg">
 </div>
 <div class="container">
-    <div class="graph"></div>
+    <div class="graph">
+        <div class="chartCard">
+            <div class="chartBox">
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+    </div>
     <div class="selectors">
         <div class="amount">
             <input type="number" id="amount" value="1">
@@ -96,13 +102,12 @@
         <p id="lastBalanceId">Ostatnia transakcja:
             <span th:text="${lastBalance}"></span>
         </p>
-
     </div>
         <button onclick="calculate()"  id="exchangeButtonId">Wymień</button>
 
 </div>
 
-
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script type="text/javascript" src="./JavaScript/script.js"></script>
 </body>
 </html>

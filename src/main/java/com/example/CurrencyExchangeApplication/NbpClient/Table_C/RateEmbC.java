@@ -16,32 +16,16 @@ import javax.annotation.processing.Generated;
         return no;
     }
 
-    public void setNo(String no) {
-        this.no = no;
-    }
-
     public String getEffectiveDate() {
         return effectiveDate;
-    }
-
-    public void setEffectiveDate(String effectiveDate) {
-        this.effectiveDate = effectiveDate;
     }
 
     public Double getBid() {
         return bid;
     }
 
-    public void setBid(Double bid) {
-        this.bid = bid;
-    }
-
     public Double getAsk() {
         return ask;
-    }
-
-    public void setAsk(Double ask) {
-        this.ask = ask;
     }
 
     @Override public String toString() {

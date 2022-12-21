@@ -127,16 +127,6 @@ button:hover:after {
     right: 5vh;
 }
 
-.graph{
-    width:90%;
-    height:60%;
-    background-color: red;
-
-    position: absolute;
-    bottom: 5%;
-    left: 5%;
-
-}
 .selectors{
    position: relative;
    top: 5vh;
@@ -249,4 +239,33 @@ input::-webkit-inner-spin-button {
     right: 5vh;
     height: 10vh;
     width: 30vh;
+}
+.graph{
+    width:90%;
+    height:60%;
+
+    position: absolute;
+    bottom: 5%;
+    left: 5%;
+
+}
+.chartMenu {
+    width: 95%;
+    height: 95%;
+}
+.chartMenu p {
+    padding: 10px;
+    font-size: 20px;
+}
+.chartCard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.chartBox {
+    width: 100%;
+    padding: 20px;
+    border-radius: 20px;
+    background-color: var(--dark);
+
 }

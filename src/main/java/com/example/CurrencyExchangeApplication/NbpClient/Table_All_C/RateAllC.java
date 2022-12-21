@@ -17,10 +17,6 @@ import javax.annotation.processing.Generated;
         return table;
     }
 
-    public void setTable(String table) {
-        this.table = table;
-    }
-
     public String getEffectiveDate() {
         return effectiveDate;
     }

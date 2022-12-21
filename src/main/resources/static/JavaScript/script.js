@@ -4,6 +4,8 @@ var optionsHave = document.getElementsByClassName("optionsHave");
 var listHave = document.getElementById("listHave");
 var currencyGet;
 var currencyHave;
+let exchangeRateChart = {};
+
 selectFieldHave.onclick = function(){
     listHave.classList.toggle("hideHave");
 }
@@ -13,6 +15,8 @@ for(option of optionsHave){
         selectTextHave.innerHTML = this.textContent;
         listHave.classList.toggle("hideHave");
         currencyHave = this.textContent;
+
+        exchange();
     }
 }
 
@@ -30,6 +34,8 @@ for(option of optionsGet){
         selectTextGet.innerHTML = this.textContent;
         listGet.classList.toggle("hideGet");
         currencyGet = this.textContent;
+
+        exchange();
     }
 }
 
@@ -70,11 +76,53 @@ function calculate() {
                 document.getElementById("resultId").innerHTML = resultString;
         })();
 
-    var url = "http://localhost:8080/currencyRate?haveCurrency="+currencyHave.trim()+"&getCurrency="+currencyGet.trim();
+    var url = "http://localhost:8080/lastBalance?haveCurrency="+currencyHave.trim()+"&getCurrency="+currencyGet.trim();
         (async () => {
                 const response = await fetch(url)
                 result = await response.json()
             var resultString ="Ostatnia transakcja: "+ result.toFixed(2);
                 document.getElementById("lastBalanceId").innerHTML = resultString;
             })();
+}
+
+function exchange() {
+
+    if (currencyHave != undefined && currencyGet != undefined){
+        var url = "http://localhost:8080/exchangeRateChart?haveCurrency="+currencyHave.trim()+"&getCurrency="+currencyGet.trim();
+            fetch(url)
+                .then(res => res.json())
+                .then((data1) => {
+
+                    var dataData = data1.slice(0,100);
+                    var labelsData = data1.slice(100,200);
+                    console.log("labelsData",labelsData);
+                    console.log("dataData",dataData);
+                    console.log("data1",data1);
+                    const down = (ctx, value) => ctx.p0.parsed.y > ctx.p1.parsed.y ? value : undefined;
+                    const data = {
+                        label: 'Weekly Sales',
+
+                        labels: labelsData,
+                        datasets: [{
+                            data: dataData,
+                            segment: {
+                                borderColor: ctx => down(ctx,  'rgba(255, 26, 104, 1)') ||  'rgba(75, 192, 192, 1)',
+                            }
+                          }]
+                    };
+
+                    const config = {
+                        type: 'line',
+                        data,
+                        options: {
+                            scales: {
+                              y: {
+                                beginAtZero: true
+                              }
+                            }
+                        }
+                    };
+                    const myChart = new Chart(document.getElementById('myChart'), config);
+                }).catch(err => console.error(err));
+    }
 }

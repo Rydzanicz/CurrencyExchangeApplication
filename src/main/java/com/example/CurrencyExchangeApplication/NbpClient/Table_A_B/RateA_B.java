@@ -18,16 +18,8 @@ import java.util.List;
         return table;
     }
 
-    public void setTable(String table) {
-        this.table = table;
-    }
-
     public String getCurrency() {
         return currency;
-    }
-
-    public void setCurrency(String currency) {
-        this.currency = currency;
     }
 
     public String getCode() {
@@ -40,10 +32,6 @@ import java.util.List;
 
     public List<RateEmbA_B> getRates() {
         return rates;
-    }
-
-    public void setRates(List<RateEmbA_B> rates) {
-        this.rates = rates;
     }
 
     @Override public String toString() {

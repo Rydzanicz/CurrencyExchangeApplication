@@ -16,16 +16,8 @@ import javax.annotation.processing.Generated;
         return bid;
     }
 
-    public void setBid(Double bid) {
-        this.bid = bid;
-    }
-
     public Double getAsk() {
         return ask;
-    }
-
-    public void setAsk(Double ask) {
-        this.ask = ask;
     }
 
     public String getCode() {
