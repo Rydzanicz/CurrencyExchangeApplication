@@ -80,7 +80,7 @@ function calculate() {
         (async () => {
                 const response = await fetch(url)
                 result = await response.json()
-            var resultString ="Ostatnia transakcja: "+ result.toFixed(2);
+            var resultString ="Kurs ostatniej transakcji: "+ result.toFixed(2);
                 document.getElementById("lastBalanceId").innerHTML = resultString;
             })();
 }
@@ -92,13 +92,11 @@ function exchange() {
             fetch(url)
                 .then(res => res.json())
                 .then((data1) => {
-
                     var dataData = data1.slice(0,100);
                     var labelsData = data1.slice(100,200);
                     const down = (ctx, value) => ctx.p0.parsed.y > ctx.p1.parsed.y ? value : undefined;
                     const data = {
                         label: 'Weekly Sales',
-
                         labels: labelsData,
                         datasets: [{
                             label: currencyHave.trim() + '/' + currencyGet.trim(),
@@ -108,7 +106,6 @@ function exchange() {
                             }
                           }]
                     };
-
                     const config = {
                         type: 'line',
                         data,
