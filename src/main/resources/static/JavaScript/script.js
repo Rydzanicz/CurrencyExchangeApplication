@@ -95,15 +95,13 @@ function exchange() {
 
                     var dataData = data1.slice(0,100);
                     var labelsData = data1.slice(100,200);
-                    console.log("labelsData",labelsData);
-                    console.log("dataData",dataData);
-                    console.log("data1",data1);
                     const down = (ctx, value) => ctx.p0.parsed.y > ctx.p1.parsed.y ? value : undefined;
                     const data = {
                         label: 'Weekly Sales',
 
                         labels: labelsData,
                         datasets: [{
+                            label: currencyHave.trim() + '/' + currencyGet.trim(),
                             data: dataData,
                             segment: {
                                 borderColor: ctx => down(ctx,  'rgba(255, 26, 104, 1)') ||  'rgba(75, 192, 192, 1)',
@@ -117,7 +115,7 @@ function exchange() {
                         options: {
                             scales: {
                               y: {
-                                beginAtZero: true
+                                beginAtZero: false
                               }
                             }
                         }
