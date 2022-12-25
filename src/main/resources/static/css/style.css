@@ -242,16 +242,16 @@ input::-webkit-inner-spin-button {
 }
 .graph{
     width:90%;
-    height:60%;
+    height:65%;
 
     position: absolute;
-    bottom: 5%;
+    bottom: 7%;
     left: 5%;
 
 }
 .chartMenu {
     width: 95%;
-    height: 95%;
+    height: 100%;
 }
 .chartMenu p {
     padding: 10px;
@@ -264,7 +264,7 @@ input::-webkit-inner-spin-button {
 }
 .chartBox {
     width: 100%;
-    padding: 20px;
+    padding: 10px;
     border-radius: 20px;
     background-color: var(--dark);
 
