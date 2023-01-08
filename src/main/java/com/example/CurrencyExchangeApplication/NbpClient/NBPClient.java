@@ -57,7 +57,6 @@ public class NBPClient {
     private CurrencyRatesAllList getCurrencyExchangeAllBuyAndSell() throws IOException {
         CurrencyRatesAllList currencyRateList = new CurrencyRatesAllList();
 
-        //http://api.nbp.pl/api/exchangerates/tables/c/?format=json
         String jsonUrl = NBP_API_URL_All_CURRENCY_C + FORMAT_JSON;
         URL url = new URL(jsonUrl);
         InputStreamReader reader = new InputStreamReader(url.openStream());
@@ -114,24 +113,24 @@ public class NBPClient {
     }
 
     public CurrencyRatesAllList getCurrencyExchangeRate() throws IOException {
-        CurrencyRatesAllList currencyRatesAllListMid = getNewCurrencyExchangeAll();
-        CurrencyRatesAllList currencyRatesAllListBuySell = getCurrencyExchangeAllBuyAndSell();
-        CurrencyRatesAllList currencyRateList = new CurrencyRatesAllList();
+        CurrencyRatesAllList listMid = getNewCurrencyExchangeAll();
+        CurrencyRatesAllList listBuySell = getCurrencyExchangeAllBuyAndSell();
+        CurrencyRatesAllList rateList = new CurrencyRatesAllList();
 
-        int length = Math.max(currencyRatesAllListMid.getCurrencyRate().size(), currencyRatesAllListBuySell.getCurrencyRate().size());
+        int length = Math.max(listMid.getCurrencyRate().size(), listBuySell.getCurrencyRate().size());
 
         for (int i = 0; i < length; i++) {
-            CurrencyRate localCurrencyRate = new CurrencyRate(currencyRatesAllListBuySell.getCurrencyRate().get(i).getCurrency().name(),
-                    currencyRatesAllListBuySell.getCurrencyRate()
+            CurrencyRate localCurrencyRate = new CurrencyRate(listBuySell.getCurrencyRate().get(i).getCurrency().name(),
+                    listBuySell.getCurrencyRate()
                             .get(i)
                             .getExchangeRateDateForBuyAndSell(),
-                    currencyRatesAllListBuySell.getCurrencyRate().get(i).getBuy(),
-                    currencyRatesAllListBuySell.getCurrencyRate().get(i).getSell(),
-                    currencyRatesAllListMid.getCurrencyRate().get(i).getExchangeRateDateForMid(),
-                    currencyRatesAllListMid.getCurrencyRate().get(i).getMedium());
-            currencyRateList.addCurrencyRate(localCurrencyRate);
+                    listBuySell.getCurrencyRate().get(i).getBuy(),
+                    listBuySell.getCurrencyRate().get(i).getSell(),
+                    listMid.getCurrencyRate().get(i).getExchangeRateDateForMid(),
+                    listMid.getCurrencyRate().get(i).getMedium());
+            rateList.addCurrencyRate(localCurrencyRate);
         }
 
-        return currencyRateList;
+        return rateList;
     }
 }

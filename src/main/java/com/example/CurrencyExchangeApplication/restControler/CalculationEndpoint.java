@@ -28,10 +28,14 @@ public class CalculationEndpoint {
         double amount1;
         double commission1;
 
-        haveCurrency1 = Currency.valueOf(haveCurrency);
-        getCurrency1 = Currency.valueOf(getCurrency);
-        amount1 = Double.parseDouble(amount);
-        commission1 = Double.parseDouble(commission);
+        try {
+            haveCurrency1 = Currency.valueOf(haveCurrency);
+            getCurrency1 = Currency.valueOf(getCurrency);
+            amount1 = Double.parseDouble(amount);
+            commission1 = Double.parseDouble(commission);
+        } catch (RuntimeException ex) {
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST);        }
 
         Calculation calculation = new Calculation(haveCurrency1, getCurrency1, amount1, commission1);
         return calculation.getCalculation();
